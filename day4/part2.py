@@ -8,7 +8,7 @@ def hover(cards):
     for card in cards:
         cardInfo = cardPoints[card]
         instances+=1
-        hover(cardInfo[1])
+        hover(cardInfo)
 
 for en,line in enumerate(lines):
     nums = re.findall(r"Card\s+\d+:([\s\d]+)\|([\s\d]+)",line)
@@ -17,6 +17,6 @@ for en,line in enumerate(lines):
     mine = mine.split()
     common = set(wins).intersection(set(mine))
     noMatches = len(common)
-    cardPoints[en+1] = (noMatches,[*range(en+2,en+noMatches+2)])
+    cardPoints[en+1] = [*range(en+2,en+noMatches+2)]
 hover([*range(1,en+2)])
 print(instances)
