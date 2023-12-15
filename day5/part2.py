@@ -11,23 +11,6 @@ for en,line in enumerate(lines[1:],2):
     else:
         dest,sour,rng = map(int,re.findall(r"\d+",line))
         group.append((sour,dest,rng))
-def mergeSeeds(seeds):
-    initNo = 0
-    newSeeds = []
-    initRng = 0
-    for seed,lenn in seeds:
-        if not initNo and not initRng:
-            initNo = seed
-            initRng = lenn
-        merges = [(i,j) for i,j in seeds if i==seed+lenn]
-        if not merges:
-            newSeeds.append((initNo,initRng))
-            initNo = 0
-            initRng = 0
-        else:
-            maxx = max(merges)
-            initRng+= maxx[1]
-    return newSeeds
 def mapper(seed,end,sowedSeeds,rngs):
     for src,dest,lenn in rngs:
         ovlpStart = max(seed,src)
